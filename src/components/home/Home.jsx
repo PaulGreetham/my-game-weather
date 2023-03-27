@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Home.scss';
 import SearchBox from '../searchbox/SearchBox';
+import Fixtures from '../fixtures/Fixtures';
 
 function Home() {
   const [teams, setTeams] = useState([]);
@@ -20,10 +21,15 @@ function Home() {
       <SearchBox onSearch={handleSearchResults} onTeamSelect={handleTeamSelect} />
       <button onClick={() => handleSearchResults(teams)}>Search</button>
       {selectedTeam ? (
-        <div className="selected-team">
-          <img src={selectedTeam.team.logo} alt={selectedTeam.team.name} />
-          <h2>{selectedTeam.team.name}</h2>
-        </div>
+        <>
+          <div className="team-selection">
+            <div className="selected-team">
+              <img src={selectedTeam.team.logo} alt={selectedTeam.team.name} />
+              <h2>{selectedTeam.team.name}</h2>
+            </div>
+            <Fixtures selectedTeam={selectedTeam} />
+          </div>
+        </>
       ) : (
         <>
           {teams?.length > 0 ? (

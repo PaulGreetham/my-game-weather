@@ -1,0 +1,38 @@
+.weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__icon {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+
+    &__temperature {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    &__description {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    &__location {
+      font-size: 1.2rem;
+    }
+  }
+}

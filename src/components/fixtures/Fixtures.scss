@@ -1,0 +1,52 @@
+.fixtures {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .fixture-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+    overflow: hidden;
+    width: calc(50% - 10px);
+
+    &:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+      width: 100%;
+    }
+
+    .team-names {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+
+      h3 {
+        margin: 0;
+      }
+
+      .team-name {
+        font-weight: 600;
+      }
+    }
+
+    .game-details {
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+
+      .game-date {
+        font-size: 14px;
+      }
+
+      .game-status {
+        color: #f00;
+        font-weight: 600;
+      }
+    }
+  }
+}
