@@ -3,7 +3,6 @@ import './SearchBox.scss';
 
 function SearchBox(props) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
 
   function handleInputChange(event) {
     setSearchTerm(event.target.value);
@@ -30,10 +29,13 @@ function SearchBox(props) {
 
       // Pass list of teams to parent component
       props.onSearch(teams);
-      setSearchResults(teams);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function handleTeamSelect(team) {
+    props.onTeamSelect(team);
   }
 
   return (
@@ -45,26 +47,14 @@ function SearchBox(props) {
         onChange={handleInputChange}
       />
       <button onClick={handleSearch}>Search</button>
-      {searchResults.length > 0 && (
-        <div className="search-results">
-          {searchResults.map(team => (
-            <div
-              key={team.team.id}
-              className="search-result"
-              onClick={() => {
-                setSearchTerm(team.team.name);
-                setSearchResults([]);
-                props.onTeamSelect(team);
-              }}
-            >
-              <img src={team.team.logo} alt={team.team.name} />
-              <h2>{team.team.name}</h2>
-            </div>
-          ))}
+      {props.selectedTeam && (
+        <div className="search-result" onClick={() => handleTeamSelect(props.selectedTeam)}>
+          <img src={props.selectedTeam.team.logo} alt={props.selectedTeam.team.name} />
+          <h2>{props.selectedTeam.team.name}</h2>
         </div>
       )}
     </div>
   );
 }
 
-export default SearchBox
+export default SearchBox;

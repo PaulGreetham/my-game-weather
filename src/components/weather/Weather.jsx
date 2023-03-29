@@ -1,48 +1,51 @@
 import React, { useState, useEffect } from 'react';
+import './Weather.scss';
 
 function Weather(props) {
-  const [weatherData, setWeatherData] = useState(null);
+  const [weather, setWeather] = useState(null);
 
   useEffect(() => {
     async function fetchWeather() {
-      // Extract the venue details from the fixture data
-      const venue = props.fixture.fixture.venue;
+      const { lat, lon, date } = props;
 
       // Set API endpoint and query parameters
-      const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
-      const apiKey = '651a37dea3206fc70e1cd20bfb09c62e';
-      const queryParams = `lat=${venue.lat}&lon=${venue.lng}&appid=${apiKey}&units=metric`;
+      const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&dt=${Math.floor(date.getTime() / 1000)}&appid=${props.apiKey}&units=metric`;
 
       try {
-        // Call API to retrieve weather data for the venue
-        const response = await fetch(`${apiUrl}?${queryParams}`);
+        // Call API to retrieve weather data
+        const response = await fetch(apiUrl);
         const data = await response.json();
 
-        // Update the weatherData state with the retrieved data
-        setWeatherData(data);
+        // Extract relevant weather data from API response
+        const weatherData = data.daily.find(day => day.dt === Math.floor(date.getTime() / 1000));
+        setWeather(weatherData);
       } catch (error) {
         console.log(error);
       }
     }
 
-    if (props.fixture) {
+    if (props.lat && props.lon && props.date) {
       fetchWeather();
-    } else {
-      setWeatherData(null);
     }
-  }, [props.fixture]);
+  }, [props]);
+
+  if (!weather) {
+    return null;
+  }
+
+  const { icon, description } = weather.weather[0];
 
   return (
-    <div>
-      {weatherData ? (
-        <>
-          <h2>Weather Report for {props.fixture.fixture.venue.name}</h2>
-          <p>Temperature: {weatherData.main.temp}°C</p>
-          <p>Weather: {weatherData.weather[0].description}</p>
-        </>
-      ) : (
-        <p>No weather data available.</p>
-      )}
+    <div className="weather">
+      <div className="weather-icon">
+        <img src={`https://openweathermap.org/img/w/${icon}.png`} alt={description} />
+      </div>
+      <div className="weather-details">
+        <h3>{description}</h3>
+        <p>Temperature: {Math.round(weather.temp.day)}°C</p>
+        <p>Humidity: {weather.humidity}%</p>
+        <p>Wind speed: {weather.wind_speed} m/s</p>
+      </div>
     </div>
   );
 }

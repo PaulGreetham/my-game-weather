@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Fixtures.scss';
+import Fixture from '../fixture/Fixture';
 import Weather from '../weather/Weather';
 
 function Fixtures(props) {
@@ -30,6 +31,7 @@ function Fixtures(props) {
         setFixtures(fixtures);
       } catch (error) {
         console.log(error);
+        setFixtures([]);
       }
     }
 
@@ -46,31 +48,27 @@ function Fixtures(props) {
 
   return (
     <div className="fixtures">
-      {props.selectedTeam ? (
+      {props.selectedTeam && (
         <>
           <h2>Upcoming fixtures for {props.selectedTeam.team.name}</h2>
-          {fixtures.length > 0 ? (
-            <ul>
+          {fixtures && fixtures.length > 0 ? (
+            <div className="fixtures-grid">
               {fixtures.map(fixture => (
-                <li key={fixture.fixture.id} onClick={() => handleFixtureSelect(fixture)}>
-                  {fixture.fixture.date} - {fixture.fixture.status.short} - {fixture.teams.home.name} vs {fixture.teams.away.name}
-                </li>
+                <Fixture key={fixture.fixture.id} fixture={fixture} onFixtureSelect={handleFixtureSelect} />
               ))}
-            </ul>
+            </div>
           ) : (
             <p>No fixtures found.</p>
           )}
+          {selectedFixture && (
+            <Weather
+              lat={selectedFixture.fixture.venue.latitude}
+              lon={selectedFixture.fixture.venue.longitude}
+              apiKey="651a37dea3206fc70e1cd20bfb09c62e"
+              onClose={() => setSelectedFixture(null)}
+            />
+          )}
         </>
-      ) : (
-        <p>Please select a team to view fixtures.</p>
-      )}
-      {selectedFixture && (
-        <Weather
-          lat={selectedFixture.fixture.venue.coordinates.latitude}
-          lon={selectedFixture.fixture.venue.coordinates.longitude}
-          apiKey="651a37dea3206fc70e1cd20bfb09c62e"
-          onClose={() => setSelectedFixture(null)}
-        />
       )}
     </div>
   );

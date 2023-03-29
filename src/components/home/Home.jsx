@@ -7,20 +7,34 @@ function Home() {
   const [teams, setTeams] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState(null);
 
+  async function handleTeamSelect(team) {
+    try {
+      const apiUrl = `https://api-football-beta.p.rapidapi.com/fixtures?team=${team.team.id}&next=5`;
+      const apiHeaders = {
+        'X-RapidAPI-Host': 'api-football-beta.p.rapidapi.com',
+        'X-RapidAPI-Key': 'f2aedf2b85msh4b5764021d9e69fp1d6d18jsn3369b176cba2'
+      };
+
+      const response = await fetch(apiUrl, {
+        headers: apiHeaders
+      });
+      const data = await response.json();
+
+      setSelectedTeam({ ...team, fixtures: data.response });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   function handleSearchResults(filteredTeams) {
     setTeams(filteredTeams);
     setSelectedTeam(null);
   }
 
-  function handleTeamSelect(team) {
-    setSelectedTeam(team);
-  }
-
   return (
     <div className="Home">
       <SearchBox onSearch={handleSearchResults} onTeamSelect={handleTeamSelect} />
-      <button onClick={() => handleSearchResults(teams)}>Search</button>
-      {selectedTeam ? (
+      {selectedTeam && (
         <>
           <div className="team-selection">
             <div className="selected-team">
@@ -30,21 +44,16 @@ function Home() {
             <Fixtures selectedTeam={selectedTeam} />
           </div>
         </>
-      ) : (
-        <>
-          {teams?.length > 0 ? (
-            <div className="team-list">
-              {teams.map(team => (
-                <div key={team.team.id} className="team" onClick={() => handleTeamSelect(team)}>
-                  <img src={team.team.logo} alt={team.team.name} />
-                  <h2>{team.team.name}</h2>
-                </div>
-              ))}
+      )}
+      {teams?.length > 0 && !selectedTeam && (
+        <div className="team-list">
+          {teams.map(team => (
+            <div key={team.team.id} className="team" onClick={() => handleTeamSelect(team)}>
+              <img src={team.team.logo} alt={team.team.name} />
+              <h2>{team.team.name}</h2>
             </div>
-          ) : (
-            <p>No teams found.</p>
-          )}
-        </>
+          ))}
+        </div>
       )}
     </div>
   );
