@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>My Game Weather</h1>
-        <p>Search for your club to see the weather at<br /><span>YOUR</span> game</p>
+        <p>search for your club to see the weather at<br /><span>YOUR</span> game</p>
       </header>
       <main>
         <Home />
