@@ -1,86 +1,57 @@
-// Variables for font sizes and spacing
-$font-size-base: 16px;
+.fixture-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
 
-// Mobile styling
-@media only screen and (max-width: 767px) {
-  .fixture {
-    font-size: $font-size-base;
+  .team-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
     padding: 1rem;
 
-    .fixture-card {
-      background-color: #ffffff;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .team-names {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-
-      .home-team {
-        margin-right: 0.5rem;
-      }
-    }
-
-    .fixture-details {
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-
-      .venue {
-        font-weight: bold;
-      }
-
-      .time {
-        margin-left: 0.5rem;
-      }
-    }
-
-    .weather {
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
+    img {
+      margin: 0 3rem; /* Add 1rem margin to the left and right of each image */
     }
   }
-}
 
-// Larger screens
-@media only screen and (min-width: 768px) {
-  .fixture {
-    font-size: $font-size-base;
+  .team-names {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 
-    .fixture-card {
-      background-color: #ffffff;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem;
-      margin-bottom: 1rem;
+    .team-name {
+      flex: 1;
+      text-align: center;
     }
 
-    .team-names {
+    .vs {
+      font-size: 1.5rem;
       font-weight: bold;
-      margin-right: 1rem;
+      margin: 0 10px;
+    }
+  }
+
+  .fixture-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      margin-bottom: 5px;
+      text-align: center;
     }
 
-    .fixture-details {
-      font-size: 0.9rem;
-      margin-right: 1rem;
-
-      .venue {
-        font-weight: bold;
-      }
-
-      .time {
-        margin-left: 0.5rem;
-      }
-    }
-
-    .weather {
-      font-size: 0.9rem;
+    .fixture-venue {
+      font-weight: bold;
     }
   }
 }
