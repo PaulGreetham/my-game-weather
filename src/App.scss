@@ -1,8 +1,7 @@
-// Mobile-first design
-
 .App {
   background: linear-gradient(to bottom, rgba(3, 113, 0, 1), rgba(73, 176, 71, 1));
   min-height: 100vh;
+  width: 100%;
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
@@ -10,22 +9,40 @@
 
   main {
     flex: 1;
-    padding: 5rem;
+    padding: 1rem;
   }
 
   header {
     color: white;
-    padding: 2rem;
+    padding: 1rem;
     text-align: center;
     top: 0;
-    z-index: 1;
 
     h1 {
-      margin: 1rem;
-      font-size: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
       font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: -0.5rem;
+      letter-spacing: -0.4rem;
+      margin-top: 1rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-left: 2.75rem;
+      margin-right: 2.75rem;
+      line-height: 1.5;
+      color: white;
+      font-weight: lighter;
+      margin-top: 1rem;
+    }
+
+    span {
+      font-weight: bold;
+      font-style: italic;
+      color: yellow;
     }
   }
 }

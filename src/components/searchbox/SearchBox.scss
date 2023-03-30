@@ -1,17 +1,24 @@
 .search-box {
   position: relative;
-  width: 22rem;
+  width: 20rem;
 
   input[type='text'] {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 1.25rem 1rem;
     box-sizing: border-box;
     border: none;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
     border-radius: 5px;
+    background-color: rgb(255, 255, 255, 0.2);
 
     &:focus {
       outline: none;
+    }
+
+    input[type='text']::placeholder {
+      color: white;
     }
   }
 
@@ -20,7 +27,7 @@
     top: calc(100% + 1rem);
     left: 0;
     right: 0;
-    background-color: white;
+    background-color: rgb(255, 255, 255, 0.5);
     border-radius: 5px;
     max-height: 20rem;
     overflow-y: auto;
@@ -54,8 +61,10 @@
     display: flex;
     align-items: space-around;
     justify-content: center;
-    width: 50%;
-    padding: 0.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 100%;
+    padding: 0.75rem;
     margin-top: 0.75rem;
     font-size: 1rem;
     color: black;
@@ -68,6 +77,11 @@
       background-color: rgb(255, 255, 0, 0.95)
     }
   }
+}
+
+.search-box input[type='text']::placeholder {
+  color: white !important;
+  font-weight: lighter;
 }
 
 @media screen and (min-width: 768px) {

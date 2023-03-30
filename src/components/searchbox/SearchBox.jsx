@@ -42,7 +42,7 @@ function SearchBox(props) {
     <div className="search-box">
       <input
         type="text"
-        placeholder="Enter team name"
+        placeholder="Enter team name..."
         value={searchTerm}
         onChange={handleInputChange}
       />
