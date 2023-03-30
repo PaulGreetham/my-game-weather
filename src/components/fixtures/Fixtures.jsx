@@ -24,6 +24,8 @@ function Fixtures(props) {
         });
         const data = await response.json();
 
+        console.log(data);
+
         // Extract list of fixtures from API response
         const fixtures = data.response;
 
