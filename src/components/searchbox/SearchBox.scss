@@ -8,7 +8,6 @@
     box-sizing: border-box;
     border: none;
     font-size: 1.5rem;
-    font-weight: bold;
     color: white;
     border-radius: 5px;
     background-color: rgb(255, 255, 255, 0.2);
@@ -81,7 +80,7 @@
 
 .search-box input[type='text']::placeholder {
   color: white !important;
-  font-weight: lighter;
+  opacity: 0.6;
 }
 
 @media screen and (min-width: 768px) {
