@@ -11,14 +11,15 @@
   }
 
   .fixture-card {
-    background-color: #fff;
+    background-color: rgb(255, 255, 255, 0.1);
+    color: white;
     border-radius: 5px;
     margin-bottom: 20px;
     overflow: hidden;
     width: 20rem;
 
     &:hover {
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
       transition: 0.2s;
     }
 
