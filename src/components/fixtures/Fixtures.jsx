@@ -10,11 +10,12 @@ function Fixtures(props) {
   useEffect(() => {
     async function fetchFixtures() {
       // Set API endpoint and query parameters
-      const apiUrl = 'https://api-football-v1.p.rapidapi.com/v3/fixtures';
+      const apiUrl = 'https://'+process.env.REACT_APP_FOOTBALL_API_HOST+'/v3/fixtures';
       const apiHeaders = {
-        'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-        'X-RapidAPI-Key': '0fcfec633fmshe9a2a6a6fa1a43ap17e111jsn18636abb575d'
+        'X-RapidAPI-Host': process.env.REACT_APP_FOOTBALL_API_HOST,
+        'X-RapidAPI-Key': process.env.REACT_APP_FOOTBALL_API_KEY
       };
+
       const queryParams = `team=${props.selectedTeam.team.id}&next=5`;
 
       try {
