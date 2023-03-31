@@ -40,13 +40,13 @@ h2 {
   margin-top: 1rem;
   border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  padding: 1rem;
+  border-radius: 10px;
+  padding: 2rem;
 }
 
 .team {
   max-width: 100%;
   border-radius: 1rem;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
@@ -55,7 +55,6 @@ h2 {
 }
 
 .team img {
-  border-radius: 1rem;
   max-width: 100%;
   max-height: 10rem;
   object-fit: cover;
