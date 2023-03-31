@@ -53,7 +53,7 @@ function Fixtures(props) {
     <div className="fixtures">
       {props.selectedTeam && (
         <>
-          <h2>Upcoming fixtures for {props.selectedTeam.team.name}</h2>
+          <h2>next 5 fixtures:</h2>
           {fixtures && fixtures.length > 0 ? (
             <div className="fixtures-grid">
               {fixtures.map(fixture => (

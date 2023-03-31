@@ -3,6 +3,11 @@
   flex-wrap: wrap;
   justify-content: space-between;
 
+  h2 {
+    width: 100%;
+    text-align: center;
+  }
+
   .fixtures-grid {
     display: flex;
     flex-direction: column;
