@@ -6,10 +6,22 @@ function Weather(props) {
 
   useEffect(() => {
     async function fetchWeather() {
-      const { lat, lon, date } = props;
+      const { venue, date, apiKey } = props;
+
+      // Geocode venue to get latitude and longitude
+      const geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${venue}&limit=1&appid=${apiKey}`;
+      const geocodeResponse = await fetch(geocodeUrl);
+      const geocodeData = await geocodeResponse.json();
+
+      if (geocodeData.length === 0) {
+        console.log(`Unable to find coordinates for ${venue}`);
+        return;
+      }
+
+      const { lat, lon } = geocodeData[0];
 
       // Set API endpoint and query parameters
-      const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&dt=${Math.floor(date.getTime() / 1000)}&appid=${props.apiKey}&units=metric`;
+      const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&dt=${Math.floor(date.getTime() / 1000)}&appid=${apiKey}&units=metric`;
 
       try {
         // Call API to retrieve weather data
@@ -24,7 +36,7 @@ function Weather(props) {
       }
     }
 
-    if (props.lat && props.lon && props.date) {
+    if (props.venue && props.date) {
       fetchWeather();
     }
   }, [props]);
@@ -36,7 +48,7 @@ function Weather(props) {
   const { icon, description } = weather.weather[0];
 
   return (
-    <div className="weather">
+    <div className="fixture-weather" onClick={(e) => e.stopPropagation()}>
       <div className="weather-icon">
         <img src={`https://openweathermap.org/img/w/${icon}.png`} alt={description} />
       </div>

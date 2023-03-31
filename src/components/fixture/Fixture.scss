@@ -4,14 +4,14 @@
   align-items: center;
   justify-content: center;
   padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
+  margin: 1rem;
+  border-radius: 10px;
 
   .team-logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 5rem;
+    width: 6rem;
     padding: 1rem;
 
     img {
@@ -24,7 +24,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     margin-bottom: 0.5rem;
 
     .team-name {
@@ -52,6 +52,27 @@
 
     .fixture-venue {
       font-weight: bold;
+    }
+
+    .weather-button {
+      display: flex;
+      align-items: space-around;
+      justify-content: center;
+      text-transform: uppercase;
+      font-weight: bold;
+      width: 19.5rem;
+      padding: 0.7rem;
+      margin-top: 0.75rem;
+      font-size: 1rem;
+      color: black;
+      background-color: yellow;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(255, 255, 0, 0.95)
+      }
     }
   }
 }

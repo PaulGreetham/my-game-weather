@@ -53,7 +53,7 @@ function Fixtures(props) {
     <div className="fixtures">
       {props.selectedTeam && (
         <>
-          <h2>next 5 fixtures:</h2>
+          <h2>click on any fixture below to show weather</h2>
           {fixtures && fixtures.length > 0 ? (
             <div className="fixtures-grid">
               {fixtures.map(fixture => (
