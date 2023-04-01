@@ -15,7 +15,7 @@ function SearchBox(props) {
       'X-RapidAPI-Host': process.env.REACT_APP_FOOTBALL_API_HOST,
       'X-RapidAPI-Key': process.env.REACT_APP_FOOTBALL_API_KEY
     };
-    const queryParams = `name=${searchTerm}`;
+    const queryParams = `search=${searchTerm}%`;
 
     try {
       // Call API to retrieve list of teams
