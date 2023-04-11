@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Fixture.scss';
 import Weather from '../weather/Weather';
 
+
 function Fixture(props) {
   const { fixture, onFixtureSelect } = props;
   const homeTeam = fixture.teams.home || {};
@@ -21,7 +22,8 @@ function Fixture(props) {
       return;
     }
 
-    const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(venueName)}&limit=1&appid=${props.apiKey}`;
+    const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
+    const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(venueName)}&limit=1&appid=${apiKey}`;
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
@@ -58,7 +60,7 @@ function Fixture(props) {
         <div className="fixture-competition">{fixture.league?.name || 'N/A'}</div>
         <div className="fixture-weather">
           <button className="weather-button" onClick={handleWeatherClick}>Show Weather</button>
-          {showWeather && geoData && <Weather lat={geoData.lat} lon={geoData.lon} date={fixtureDate} apiKey={props.apiKey} />}
+          {showWeather && geoData && <Weather lat={geoData.lat} lon={geoData.lon} date={fixtureDate} apiKey={process.env.REACT_APP_OPENWEATHER_API_KEY} />}
           {geoError && <div className="error">{geoError}</div>}
         </div>
       </div>

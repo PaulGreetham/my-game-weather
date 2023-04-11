@@ -6,10 +6,10 @@ function Weather(props) {
 
   useEffect(() => {
     async function fetchWeather() {
-      const { venue, date, apiKey } = props;
+      const { venue, date } = props;
 
       // Geocode venue to get latitude and longitude
-      const geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${venue}&limit=1&appid=${apiKey}`;
+      const geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${venue}&limit=1&appid=9d225b96b1df1dc361814a3cafd42f96`;
       const geocodeResponse = await fetch(geocodeUrl);
       const geocodeData = await geocodeResponse.json();
 
@@ -21,7 +21,7 @@ function Weather(props) {
       const { lat, lon } = geocodeData[0];
 
       // Set API endpoint and query parameters
-      const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&dt=${Math.floor(date.getTime() / 1000)}&appid=${apiKey}&units=metric`;
+      const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&dt=${Math.floor(date.getTime() / 1000)}&appid=9d225b96b1df1dc361814a3cafd42f96&units=metric`;
 
       try {
         // Call API to retrieve weather data
