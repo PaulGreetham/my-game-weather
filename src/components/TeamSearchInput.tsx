@@ -3,6 +3,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -120,9 +121,24 @@ export function TeamSearchInput() {
           <h2 className="text-xl font-bold mb-2">Team Data:</h2>
           <ul>
             {teamData.map((team) => (
-              <li key={team.id} className="mb-2">
-                <img src={team.logo} alt={team.name} className="w-8 h-8 inline mr-2" />
-                {team.name} ({team.country}) - {team.venue.name || 'No Venue'}
+              <li key={team.id} className="mb-4 flex items-center">
+                <Image
+                  src={team.logo}
+                  alt={`${team.name} Logo`}
+                  width={48}
+                  height={48}
+                  className="mr-4"
+                />
+                <div>
+                  <h3 className="text-lg font-semibold">{team.name} ({team.code || 'N/A'})</h3>
+                  <p>{team.country} | Founded: {team.founded || 'N/A'}</p>
+                  {team.venue.name && (
+                    <p>
+                      Venue: {team.venue.name}, {team.venue.city || 'N/A'} 
+                      {team.venue.capacity && ` | Capacity: ${team.venue.capacity}`}
+                    </p>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
