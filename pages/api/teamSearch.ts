@@ -28,11 +28,16 @@ interface ExternalResponse {
   venue: Venue;
 }
 
+interface APIError {
+  code: string;
+  message: string;
+  // Add other relevant fields based on API documentation
+}
+
 interface ExternalFootballAPIResponse {
   get: string;
   parameters: { search?: string; name?: string };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  errors: any[];
+  errors: APIError;
   results: number;
   paging: { current: number; total: number };
   response: ExternalResponse[];
