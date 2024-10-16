@@ -1,5 +1,3 @@
-// src/components/TeamSearchInput.tsx
-
 'use client';
 
 import { useState } from 'react';
